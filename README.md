@@ -30,6 +30,13 @@ Exchange URL: https://bittrex.com/api/v1.1/public/getticker?market=btc-eth
 JSON Key: result.Last
 
 ## Screenshots
+![Crypto Currency Price Plasmoid1](https://raw.githubusercontent.com/spmdrd/plasma-applet-cryptocurrency-price/master/cryptocurrency-price-plasmoid1.png)
+
+![Crypto Currency Price Plasmoid](https://raw.githubusercontent.com/spmdrd/plasma-applet-cryptocurrency-price/master/cryptocurrency-price-plasmoid2.png)
+
+![Crypto Currency Price Plasmoid (Panel)](https://raw.githubusercontent.com/spmdrd/plasma-applet-cryptocurrency-price/master/cryptocurrency-price-panel.png)
+
+![Crypto Currency Price Plasmoid (Configuration)](https://raw.githubusercontent.com/spmdrd/plasma-applet-cryptocurrency-price/master/cryptocurrency-price-config.png)
 
 ## Changelog
 
@@ -42,3 +49,10 @@ Initial release
 - show additional fields for ask, bid, last in the hover tooltip
 - Allow controlling # of decimal places
 
+## Donate
+You can buy me a beer if you liked this widget:
+
+BCH: 1DjJavavSFwPgTy8xRdkXQyx8accdec6M5
+BTC: 3DoF2iwAB74cbTd1Bs5gxrLXpaacwU7abR
+ETH: 0x672fAa0BebAd77ef7AB06A9bd95c78f1944edd8C 
+XMR: 48FhvozRjou8V1W4vk1rZ32uGXH587RqZWoqNtVuL1dCj8ur1gWbvBLDY5rUBDuZL1UNXdjqiX8ARFfS89WirTsZ7GXG3Pq
