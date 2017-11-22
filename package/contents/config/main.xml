@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kcfg xmlns="http://www.kde.org/standards/kcfg/1.0"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0
+      http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
+  <kcfgfile name=""/>
+  <group name="General">
+    <entry name="xeUrl" type="String">
+      <label>Exchange URL</label>
+      <default>https://www.bitstamp.net/api/ticker/</default>
+    </entry>
+	<entry name="xeKey" type="String">
+      <label>JSON Key</label>
+      <default>last</default>
+    </entry>
+	<entry name="ttLabel" type="String">
+      <label>Tooltip label</label>
+      <default>Bitstamp BTC-USD</default>
+    </entry>
+    <entry name="refreshRate" type="Int">
+      <label>Refresh rate</label>
+      <default>1</default>
+    </entry>
+    <entry name="showIcon" type="bool">
+      <label>Show icon</label>
+      <default>false</default>
+    </entry>
+    <entry name="showText" type="bool">
+      <label>Show text</label>
+      <default>true</default>
+    </entry>
+    <entry name="onClickAction" type="String">
+      <label>On click</label>
+      <default>refresh</default>
+    </entry>
+    <entry name="showDecimals" type="bool">
+      <label>Show decimals</label>
+      <default>true</default>
+    </entry>
+    <entry name="showBackground" type="bool">
+      <label>Show background</label>
+      <default>true</default>
+    </entry>
+  </group>
+</kcfg>
