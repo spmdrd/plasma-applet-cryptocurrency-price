@@ -3,7 +3,7 @@
 ## About
 This is a Plasma applet that shows the current price of any cryptocurrency from user definable exchanges and JSON keys.
 
-Credits to Maciej Gierej, author of the bitcoin price applet that this applet is derived from.
+Credits to Maciej Gierej, author of the bitcoin price applet that this applet is derived from:
 
 https://github.com/MakG10/plasma-applet-bitcoin-price
 
