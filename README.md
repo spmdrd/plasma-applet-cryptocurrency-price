@@ -1,11 +1,11 @@
 # Crypto Currency Price Plasmoid
 
 ## About
-This is a Plasma applet that shows the current price of any cryptocurrency from user definable exchanges and JSON keys.
+This is a Plasma applet that shows the current price of any cryptocurrency from user definable exchange sources and JSON keys.
 
-Credits to Maciej Gierej, author of the bitcoin price applet that this applet is derived from:
+Credits to Maciej Gierej, author of several bitcoin applets that this applet is derived from:
 
-https://github.com/MakG10/plasma-applet-bitcoin-price
+https://github.com/MakG10/
 
 ## Installation
 ```
@@ -15,9 +15,13 @@ plasmapkg2 -i package
 Use additional `-g` flag to install plasmoid globally, for all users.
 
 ## Usage
-Enter the Exchange URL and JSON Key in settings. The tooltip label is shown on hover.
+Enter the Exchange URL and JSON Key in settings. 
 
-The 'show icon' function is still a WIP but you can manually replace the blank.svg image with one of your own for now.
+JSON keys are case sensitive. 
+
+The tooltip label is shown on hover.
+
+For custom icons, i recommend downloading the respective coin images from coinranking.com.
 
 ### Example 1 - BTC-USD last price on Bitstamp
 Exchange URL: https://www.bitstamp.net/api/ticker/
@@ -45,14 +49,21 @@ JSON Key: result.Last
 
 ## Changelog
 
+### 1.1
+- added showing of custom icons
+- added coin labeling
+- removed buggy show decimals
+- reordered config dialog
+- changed plasmoid icon to applications-internet
+- updated screenshots
+
 ### 1.0
 Initial release
 
 ## To Do
-- show a label instead of icon for the currency type of the rate (e.g. USD, BTC)
-- 'Show custom icon' option in settings
-- show additional fields for ask, bid, last in the hover tooltip
+- show additional fields for ask, bid in the hover tooltip
 - Allow controlling # of decimal places
+- click on plasmoid icon opens icon chooser dialog
 
 ## Donate
 You can buy me a beer if you liked this widget:

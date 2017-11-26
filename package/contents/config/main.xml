@@ -13,6 +13,10 @@
       <label>JSON Key</label>
       <default>last</default>
     </entry>
+	<entry name="coinLabel" type="String">
+      <label>Coin Label</label>
+      <default>$</default>
+    </entry>
 	<entry name="ttLabel" type="String">
       <label>Tooltip label</label>
       <default>Bitstamp BTC-USD</default>
@@ -21,25 +25,29 @@
       <label>Refresh rate</label>
       <default>1</default>
     </entry>
-    <entry name="showIcon" type="bool">
-      <label>Show icon</label>
-      <default>false</default>
+    <entry name="showCoinLabel" type="bool">
+      <label>Show coin label</label>
+      <default>true</default>
     </entry>
     <entry name="showText" type="bool">
       <label>Show text</label>
       <default>true</default>
     </entry>
-    <entry name="onClickAction" type="String">
-      <label>On click</label>
-      <default>refresh</default>
-    </entry>
-    <entry name="showDecimals" type="bool">
-      <label>Show decimals</label>
-      <default>true</default>
-    </entry>
     <entry name="showBackground" type="bool">
       <label>Show background</label>
       <default>true</default>
+    </entry>
+    <entry name="icon" type="string">
+      <label>Icon</label>
+      <default></default>
+    </entry>
+    <entry name="showIcon" type="bool">
+      <label>Show icon</label>
+      <default>true</default>
+    </entry>
+    <entry name="onClickAction" type="String">
+      <label>On click</label>
+      <default>refresh</default>
     </entry>
   </group>
 </kcfg>
