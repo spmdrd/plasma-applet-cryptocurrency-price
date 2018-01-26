@@ -1,9 +1,11 @@
 import QtQuick 2.6
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 1.4
+import QtQuick.Dialogs 1.2
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.plasmoid 2.0
 import org.kde.plasma.components 2.0 as PlasmaComponents
+import org.kde.kquickcontrolsaddons 2.0 as KQuickAddons
 import "../code/ccscript.js" as CCScript
 
 Item {
@@ -35,12 +37,22 @@ Item {
 			}
 		}
 		
+		signal iconChanged(string iconName)
+		
 		Layout.fillWidth: false
 		Layout.minimumWidth: minWidth
 
-		MouseArea {
-			id: mouseArea
-			anchors.fill: parent
+        KQuickAddons.IconDialog {
+            id: iconDialog
+            onIconNameChanged: {
+                iconChanged(iconName)
+                plasmoid.configuration.icon = iconName
+            }
+        }
+    
+        MouseArea {
+			id: mouseAreaValue
+			anchors.fill: cryptoValue
 			hoverEnabled: true
 			onClicked: {
 				switch(plasmoid.configuration.onClickAction) {
@@ -55,6 +67,20 @@ Item {
 				}
 			}
 		}
+		
+		MouseArea {
+			id: mouseAreaIcon
+			anchors.fill: cryptoIcon
+			hoverEnabled: true
+			onClicked: iconDialog.open()
+		}
+		
+		MouseArea {
+			id: mouseAreaIcon2
+			anchors.fill: cryptoIcon2
+			hoverEnabled: true
+			onClicked: iconDialog.open()
+        }
 		
 		BusyIndicator {
 			width: parent.height
@@ -75,8 +101,8 @@ Item {
 			
 			source: "../images/blank.svg"
 			visible: root.showIcon
-			opacity: root.useCustomIcon ? 0.0 : root.updatingRate ? 0.2 : mouseArea.containsMouse ? 0.8 : 1.0
-		}
+			opacity: root.useCustomIcon ? 0.0 : root.updatingRate ? 0.2 : mouseAreaIcon.containsMouse ? 0.8 : 1.0
+        }
 		
 		PlasmaCore.IconItem {
 			id: cryptoIcon2
@@ -89,7 +115,7 @@ Item {
 			
 			source: plasmoid.configuration.icon
 			visible: root.showIcon
-			opacity: root.updatingRate ? 0.2 : mouseArea.containsMouse ? 0.8 : 1.0
+			opacity: root.updatingRate ? 0.2 : mouseAreaIcon2.containsMouse ? 0.8 : 1.0
 		}
 		
 		PlasmaComponents.Label {
@@ -103,7 +129,7 @@ Item {
 			verticalAlignment: Text.AlignVCenter
 			
 			visible: root.showText
-			opacity: root.updatingRate ? 0.2 : mouseArea.containsMouse ? 0.8 : 1.0
+			opacity: root.updatingRate ? 0.2 : mouseAreaValue.containsMouse ? 0.8 : 1.0
 			
 			fontSizeMode: Text.Fit
 			minimumPixelSize: cryptoIcon.width * 0.7

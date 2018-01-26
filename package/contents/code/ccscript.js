@@ -6,7 +6,7 @@ function getRate(xeUrl, xeKey, callback) {
 	
 	request(xeUrl, function(req) {
 	var data = JSON.parse(req.responseText);
-    var rate = eval("data." + xeKey); 
+    var rate = eval("data" + xeKey); 
     callback(rate);
 	});
 
@@ -20,7 +20,7 @@ function getDefaultUrl() {
 }
 
 function getDefaultKey() {
-		var xeKey = 'result.XXBTZUSD.c[0]';
+		var xeKey = '.result.XXBTZUSD.c[0]';
 		return xeKey;
 		return null;
 }

@@ -11,7 +11,7 @@
     </entry>
 	<entry name="xeKey" type="String">
       <label>JSON Key</label>
-      <default>last</default>
+      <default>.last</default>
     </entry>
 	<entry name="coinLabel" type="String">
       <label>Coin Label</label>
