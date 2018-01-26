@@ -26,17 +26,22 @@ For custom icons, i recommend downloading the respective coin images from coinra
 ### Example 1 - BTC-USD last price on Bitstamp
 Exchange URL: https://www.bitstamp.net/api/ticker/
 
-JSON Key: last
+JSON Key: .last
 
 ### Example 2 - ETH-USD ask price on Kraken
 Exchange URL: https://api.kraken.com/0/public/Ticker?pair=ETHUSD
 
-JSON Key: result.XETHZUSD.a[0]
+JSON Key: .result.XETHZUSD.a[0]
 
 ### Example 3 - BTC-ETH last price on Bittrex
 Exchange URL: https://bittrex.com/api/v1.1/public/getticker?market=btc-eth
 
-JSON Key: result.Last
+JSON Key: .result.Last
+
+### Example 4 - HUSH-USD price on CoinMarketCap
+Exchange URL: https://api.coinmarketcap.com/v1/ticker/hush/
+
+JSON Key: [0].price_usd
 
 ## Screenshots
 ![Crypto Currency Price Plasmoid1](https://raw.githubusercontent.com/spmdrd/plasma-applet-cryptocurrency-price/master/cryptocurrency-price-plasmoid1.png)
@@ -46,6 +51,11 @@ JSON Key: result.Last
 ![Crypto Currency Price Plasmoid (Configuration)](https://raw.githubusercontent.com/spmdrd/plasma-applet-cryptocurrency-price/master/cryptocurrency-price-config.png)
 
 ## Changelog
+
+### 1.1
+- fixed an error in eval function preventing coinmarketcap and other api json keys from being used
+- refer to updated examples for new json key usage
+- clicking icon now opens icon chooser dialog for easier icon changing
 
 ### 1.1
 - added showing of custom icons
@@ -59,9 +69,9 @@ JSON Key: result.Last
 Initial release
 
 ## To Do
+- allow converting rate to currency of choice using api (e.g. USD rate to EUR or BTC rate to USD)
 - show additional fields for ask, bid in the hover tooltip
 - Allow controlling # of decimal places
-- click on plasmoid icon opens icon chooser dialog
 
 ## Donate
 You can buy me a beer if you liked this widget:
