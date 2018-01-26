@@ -52,7 +52,7 @@ JSON Key: [0].price_usd
 
 ## Changelog
 
-### 1.1
+### 1.2
 - fixed an error in eval function preventing coinmarketcap and other api json keys from being used
 - refer to updated examples for new json key usage
 - clicking icon now opens icon chooser dialog for easier icon changing
