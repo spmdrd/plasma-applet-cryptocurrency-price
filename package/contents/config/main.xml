@@ -13,8 +13,8 @@
       <label>JSON Key</label>
       <default>.last</default>
     </entry>
-	<entry name="coinLabel" type="String">
-      <label>Coin Label</label>
+	<entry name="pricePrefix" type="String">
+      <label>Price prefix</label>
       <default>$</default>
     </entry>
 	<entry name="ttLabel" type="String">
@@ -25,8 +25,8 @@
       <label>Refresh rate</label>
       <default>1</default>
     </entry>
-    <entry name="showCoinLabel" type="bool">
-      <label>Show coin label</label>
+    <entry name="showPricePrefix" type="bool">
+      <label>Show price prefix</label>
       <default>true</default>
     </entry>
     <entry name="showText" type="bool">
@@ -37,17 +37,29 @@
       <label>Show background</label>
       <default>true</default>
     </entry>
+    <entry name="controlDecimals" type="bool">
+      <label>Control decimals</label>
+      <default>true</default>
+    </entry>
+    <entry name="decPlaces" type="Int">
+      <label>Decimal Places</label>
+      <default>2</default>
+    </entry>
     <entry name="icon" type="string">
       <label>Icon</label>
       <default></default>
     </entry>
     <entry name="showIcon" type="bool">
-      <label>Show icon</label>
+      <label>Show</label>
       <default>true</default>
     </entry>
     <entry name="onClickAction" type="String">
       <label>On click</label>
       <default>refresh</default>
+    </entry>
+    <entry name="icOnClickAction" type="String">
+      <label>Icon on click</label>
+      <default>icchooser</default>
     </entry>
   </group>
 </kcfg>
