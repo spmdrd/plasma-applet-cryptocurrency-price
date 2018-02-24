@@ -52,6 +52,12 @@ JSON Key: [0].price_usd
 
 ## Changelog
 
+### 1.3
+- added option to control # of decimal places
+- added option to control icon click action
+- cleaned up settings dialog look and structure
+- some minor improvements
+
 ### 1.2
 - fixed an error in eval function preventing coinmarketcap and other api json keys from being used
 - refer to updated examples for new json key usage
@@ -70,8 +76,7 @@ Initial release
 
 ## To Do
 - allow converting rate to currency of choice using api (e.g. USD rate to EUR or BTC rate to USD)
-- show additional fields for ask, bid in the hover tooltip
-- Allow controlling # of decimal places
+- show additional fields for ask, bid, last in the hover tooltip
 
 ## Donate
 You can buy me a beer if you liked this widget:
