@@ -14,9 +14,10 @@ Item {
 	Layout.fillHeight: true
 	
 	property string cryptoRate: '...'
-	property bool showCoinLabel: plasmoid.configuration.showCoinLabel
+	property bool showPricePrefix: plasmoid.configuration.showPricePrefix
 	property bool showIcon: plasmoid.configuration.showIcon
 	property bool showText: plasmoid.configuration.showText
+	property bool controlDecimals: plasmoid.configuration.controlDecimals
 	property bool updatingRate: false
 	property bool useCustomIcon: plasmoid.configuration.showIcon && plasmoid.configuration.icon != ''
 	
@@ -72,14 +73,29 @@ Item {
 			id: mouseAreaIcon
 			anchors.fill: cryptoIcon
 			hoverEnabled: true
-			onClicked: iconDialog.open()
+//			onClicked: iconDialog.open();
 		}
 		
 		MouseArea {
 			id: mouseAreaIcon2
 			anchors.fill: cryptoIcon2
 			hoverEnabled: true
-			onClicked: iconDialog.open()
+			onClicked: {
+				switch(plasmoid.configuration.icOnClickAction) {
+					case 'nothing':
+						action_nothing();
+						break;
+					
+					case 'refresh':
+						action_refresh();
+						break;
+                        
+					case 'icchooser':
+					default:
+						iconDialog.open();
+						break;
+				}
+			}
         }
 		
 		BusyIndicator {
@@ -134,7 +150,7 @@ Item {
 			fontSizeMode: Text.Fit
 			minimumPixelSize: cryptoIcon.width * 0.7
 			font.pixelSize: 72			
-			text: root.showCoinLabel ? (plasmoid.configuration.coinLabel + root.cryptoRate) : root.cryptoRate
+			text: root.showPricePrefix ? (plasmoid.configuration.pricePrefix + root.cryptoRate) : root.cryptoRate
 		}
 	}
 	
@@ -168,13 +184,17 @@ Item {
 			
 			var result = CCScript.getRate(plasmoid.configuration.xeUrl, plasmoid.configuration.xeKey, function(rate) {
 				
-				var rateText = Number(rate);
+				if(!plasmoid.configuration.controlDecimals) {
+                    var rateText = Number(rate);
+                } else {
+				var rateText = Number(rate).toFixed(plasmoid.configuration.decPlaces);
+                }
 				
 				root.cryptoRate = rateText;
 				
 				var toolTipSubText = '<b>' + i18n(plasmoid.configuration.ttLabel) + '</b>';
 				toolTipSubText += '<br />';
-				root.showCoinLabel? toolTipSubText += '<b>' + plasmoid.configuration.coinLabel + root.cryptoRate + '</b>' : toolTipSubText += '<b>' + root.cryptoRate + '</b>'
+				root.showPricePrefix? toolTipSubText += '<b>' + plasmoid.configuration.pricePrefix + root.cryptoRate + '</b>' : toolTipSubText += '<b>' + root.cryptoRate + '</b>'
 				
 				plasmoid.toolTipSubText = toolTipSubText;
 				
