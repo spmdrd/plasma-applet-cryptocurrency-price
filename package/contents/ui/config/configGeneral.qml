@@ -10,16 +10,19 @@ Item {
 	Layout.fillWidth: true
 	property alias cfg_xeUrl: xeUrl.text
 	property alias cfg_xeKey: xeKey.text
-	property alias cfg_coinLabel: coinLabel.text
+	property alias cfg_pricePrefix: pricePrefix.text
 	property alias cfg_ttLabel: ttLabel.text
 	property string cfg_onClickAction: plasmoid.configuration.onClickAction
+	property string cfg_icOnClickAction: plasmoid.configuration.icOnClickAction
 	property alias cfg_refreshRate: refreshRate.value
-	property alias cfg_showIcon: showIcon.checked
-	property string cfg_icon: plasmoid.configuration.icon
+	property alias cfg_decPlaces: decPlaces.value
+	property alias cfg_controlDecimals: controlDecimals.checked
 	property alias cfg_showText: showText.checked
 	property alias cfg_showBackground: showBackground.checked
-	property alias cfg_showCoinLabel: showCoinLabel.checked
-
+	property alias cfg_showPricePrefix: showPricePrefix.checked
+	property alias cfg_showIcon: showIcon.checked
+	property string cfg_icon: plasmoid.configuration.icon
+	
 	GridLayout {
 		columns: 2
 		
@@ -29,7 +32,7 @@ Item {
 		
 		TextField {
 			id: xeUrl
-			Layout.minimumWidth: theme.mSize(theme.defaultFont).width * 30
+			Layout.minimumWidth: theme.mSize(theme.defaultFont).width * 35
 		}
 
 		Label {
@@ -38,37 +41,199 @@ Item {
 
 		TextField {
 			id: xeKey
-			Layout.minimumWidth: theme.mSize(theme.defaultFont).width * 30
+			Layout.minimumWidth: theme.mSize(theme.defaultFont).width * 15
 		}
 		
 		Label {
-			text: i18n("Coin Label:")
+			text: i18n("Exchange Name:")
 		}
 
-		TextField {
-			id: coinLabel
-			Layout.minimumWidth: theme.mSize(theme.defaultFont).width * 10
-		}
-		
+        GridLayout {
+            columns: 2
+
+            TextField {
+                id: ttLabel
+                Layout.minimumWidth: theme.mSize(theme.defaultFont).width * 12
+            }
+            
+            Label {
+                text: i18n("(Shown on hover)")
+            }
+        }
+
 		Label {
-			text: i18n("Tooltip Label:")
+			text: i18n("Price Prefix:")
 		}
 
-		TextField {
-			id: ttLabel
-			Layout.minimumWidth: theme.mSize(theme.defaultFont).width * 10
-		}
+        GridLayout {
+            columns: 2
+            
+            TextField {
+                id: pricePrefix
+                Layout.minimumWidth: theme.mSize(theme.defaultFont).width * 12
+            }
+            
+            CheckBox {
+                id: showPricePrefix
+                text: i18n("Show Prefix")
+                onClicked: {
+                    if(!this.checked) {
+                            pricePrefix.enabled = false
+                        } else {
+                            pricePrefix.enabled = true
+                        }
+                    }
+                }
+            }
 		
 		Label {
-			text: i18n("Refresh rate:")
+			text: "Round Decimals:"
+		}
+		
+        GridLayout {
+            columns: 2
+ 
+            SpinBox {
+                id: decPlaces
+                Layout.minimumWidth: theme.mSize(theme.defaultFont).width * 12
+                minimumValue: 0
+                suffix: i18n(" places")
+            }
+            
+            CheckBox {
+			id: controlDecimals
+			text: i18n("Enabled")
+			onClicked: {
+                if(!this.checked) {
+                        decPlaces.enabled = false
+                    } else {
+                        decPlaces.enabled = true
+                    }
+                }
+            }
+        }
+        
+        Label {
+			text: i18n("Refresh Frequency:")
 		}
 		
 		SpinBox {
 			id: refreshRate
+            Layout.minimumWidth: theme.mSize(theme.defaultFont).width * 12
 			suffix: i18n(" minutes")
 			minimumValue: 1
 		}
 		
+        Label {
+			text: i18n("Price On Click:")
+		}
+		
+
+        GridLayout {
+            columns: 3
+ 
+            ExclusiveGroup { id: clickGroup }
+        
+            RadioButton {
+                exclusiveGroup: clickGroup
+                checked: cfg_onClickAction == 'refresh'
+                text: i18n("Refresh")
+                onClicked: {
+                    cfg_onClickAction = 'refresh'
+                    }
+                }
+
+            RadioButton {
+                exclusiveGroup: clickGroup
+                checked: cfg_onClickAction == 'nothing'
+                text: i18n("Do Nothing")
+                onClicked: {
+                    cfg_onClickAction = 'nothing'
+                    }
+                }
+                
+            Label {
+                text: ""
+            }
+        }
+
+        Label {
+            text: "Icon On Click:"
+        }
+        
+		ExclusiveGroup { id: icClickGroup }
+        
+        GridLayout {
+            columns: 3
+ 
+           RadioButton {
+                id: icRefresh
+                exclusiveGroup: icClickGroup
+                checked: cfg_icOnClickAction == 'refresh'
+                text: i18n("Refresh")
+                onClicked: {
+                    cfg_icOnClickAction = 'refresh'
+                    }
+                }
+
+            RadioButton {
+                id: icNothing
+                exclusiveGroup: icClickGroup
+                checked: cfg_icOnClickAction == 'nothing'
+                text: i18n("Do Nothing")
+                onClicked: {
+                    cfg_icOnClickAction = 'nothing'
+                    }
+                }
+                
+             RadioButton {
+                id: icChoose
+                exclusiveGroup: icClickGroup
+                checked: cfg_icOnClickAction == 'icchooser'
+                text: i18n("Choose Icon")
+                onClicked: {
+                    cfg_icOnClickAction = 'icchooser'
+                    }
+                }
+            }
+            
+        Label {
+			text: i18n("Icon:")
+		}
+	
+        GridLayout {
+            columns: 2
+ 
+            IconPicker {
+                id: iconPicker
+                currentIcon: cfg_icon
+                defaultIcon: ""
+                onIconChanged: cfg_icon = iconName
+                enabled: true
+            }
+        
+            CheckBox {
+                id: showIcon
+                text: i18n("Show icon")
+                onClicked: {
+                    if(!this.checked) {
+                        showText.checked = true
+                        showText.enabled = false
+                        iconPicker.enabled = false
+                        icChoose.enabled = false
+                        icRefresh.enabled = false
+                        icNothing.enabled = false
+                    } else {
+                        showText.enabled = true
+                        iconPicker.enabled = true
+                        icChoose.enabled = true
+                        icRefresh.enabled = true
+                        icNothing.enabled = true
+                    }
+                }
+            }
+        }
+
 		Label {
 			text: ""
 		}
@@ -82,86 +247,29 @@ Item {
 			text: ""
 		}
 		
-		CheckBox {
-			id: showText
-			text: i18n("Show text (Disabled: displays the rate only on hover)")
-			onClicked: {
-				if(!this.checked) {
-					showIcon.checked = true
-					showIcon.enabled = false
-					showCoinLabel.checked = false
-					showCoinLabel.enabled = false
-				} else {
-					showIcon.enabled = true
-					showCoinLabel.enabled = true
-					showCoinLabel.checked = true
-				}
-			}
-		}
-		
-		Label {
-			text: ""
-		}
-		
-		CheckBox {
-			id: showCoinLabel
-			text: i18n("Show Coin Label")
-		}
-		
-		Label {
-			text: ""
-		}
-		
-		CheckBox {
-			id: showIcon
-			text: i18n("Show icon")
-			onClicked: {
-				if(!this.checked) {
-					showText.checked = true
-					showText.enabled = false
-				} else {
-					showText.enabled = true
-				}
-			}
-		}
-		
-		PlasmaComponents.Label {
-			text: i18n("Icon:")
-		}
-		
-		IconPicker {
-			currentIcon: cfg_icon
-			defaultIcon: ""
-			onIconChanged: cfg_icon = iconName
-			enabled: true
-		}
-
-		Label {
-			text: i18n("On click:")
-		}
-		
-		ExclusiveGroup { id: clickGroup }
-		
-		RadioButton {
-			Layout.row: 10
-			Layout.column: 1
-			exclusiveGroup: clickGroup
-			checked: cfg_onClickAction == 'refresh'
-			text: i18n("Refresh")
-			onClicked: {
-				cfg_onClickAction = 'refresh'
-			}
-		}
-
-		RadioButton {
-			Layout.row: 11
-			Layout.column: 1
-			exclusiveGroup: clickGroup
-			checked: cfg_onClickAction == 'nothing'
-			text: i18n("Do Nothing")
-			onClicked: {
-				cfg_onClickAction = 'nothing'
-			}
-		}
-	}
+        GridLayout {
+            columns: 3
+ 
+            CheckBox {
+                id: showText
+                text: i18n("Show price")
+                onClicked: {
+                    if(!this.checked) {
+                        showIcon.checked = true
+                        showIcon.enabled = false
+                        showCoinLabel.checked = false
+                        showCoinLabel.enabled = false
+                    } else {
+                        showIcon.enabled = true
+                        showCoinLabel.enabled = true
+                        showCoinLabel.checked = true
+                    }
+                }
+            }
+            
+            Label {
+                    text: i18n("(Disabled: displays the price only on hover)")
+                }
+        }
+    }
 }
