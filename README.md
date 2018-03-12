@@ -1,11 +1,7 @@
 # Crypto Currency Price Plasmoid
 
 ## About
-This is a Plasma applet that shows the current price of any cryptocurrency from user definable exchange sources and JSON keys.
-
-Credits to Maciej Gierej, author of several bitcoin applets that this applet is derived from:
-
-https://github.com/MakG10/
+This is a Plasma applet that shows the current price of bitcoin or any other cryptocurrency from user definable exchange sources and JSON keys.
 
 ## Installation
 ```
@@ -15,33 +11,31 @@ plasmapkg2 -i package
 Use additional `-g` flag to install plasmoid globally, for all users.
 
 ## Usage
-Enter the Exchange URL and JSON Key in settings. 
+Choose a preset or enter your preferred Exchange URL and JSON Key (case sensitive) in settings.
 
-JSON keys are case sensitive. 
+Price conversion options can be found in the 'Price Conversion' sub-category.
 
-The tooltip label is shown on hover.
-
-For custom icons, i recommend downloading the respective coin images from coinranking.com.
+For icons, i recommend downloading the respective coin images from coinranking.com.
 
 ### Example 1 - BTC-USD last price on Bitstamp
 Exchange URL: https://www.bitstamp.net/api/ticker/
 
-JSON Key: .last
+JSON Key: last
 
 ### Example 2 - ETH-USD ask price on Kraken
 Exchange URL: https://api.kraken.com/0/public/Ticker?pair=ETHUSD
 
-JSON Key: .result.XETHZUSD.a[0]
+JSON Key: result.XETHZUSD.a.0
 
 ### Example 3 - BTC-ETH last price on Bittrex
 Exchange URL: https://bittrex.com/api/v1.1/public/getticker?market=btc-eth
 
-JSON Key: .result.Last
+JSON Key: result.Last
 
 ### Example 4 - HUSH-USD price on CoinMarketCap
 Exchange URL: https://api.coinmarketcap.com/v1/ticker/hush/
 
-JSON Key: [0].price_usd
+JSON Key: 0.price_usd
 
 ## Screenshots
 ![Crypto Currency Price Plasmoid1](https://raw.githubusercontent.com/spmdrd/plasma-applet-cryptocurrency-price/master/cryptocurrency-price-plasmoid1.png)
@@ -51,6 +45,20 @@ JSON Key: [0].price_usd
 ![Crypto Currency Price Plasmoid (Configuration)](https://raw.githubusercontent.com/spmdrd/plasma-applet-cryptocurrency-price/master/cryptocurrency-price-config.png)
 
 ## Changelog
+
+### 1.4
+- added configuration presets
+- added price conversion options
+-- added option to multiply price by x (e.g. # of coins)
+-- added option to convert base unit to fiat (e.g. btc to usd)
+-- added option to convert from fiat to fiat (e.g. usd to eur)
+- added suffix option to display custom text after the price
+- replaced eval() for json key processing
+-- json key format has changed due to changes in parsing method
+- try to fix invalid/old format json keys with regex
+- migrated getRate function to main qml
+- fixed logic of show text / show icon options
+- some code & ui changes
 
 ### 1.3
 - added option to control # of decimal places
@@ -74,9 +82,10 @@ JSON Key: [0].price_usd
 ### 1.0
 Initial release
 
-## To Do
-- allow converting rate to currency of choice using api (e.g. USD rate to EUR or BTC rate to USD)
-- show additional fields for ask, bid, last in the hover tooltip
+## To-Do
+- user customizable/saveable presets
+- price alarms and notifications
+- portfolio management
 
 ## Donate
 You can buy me a beer if you liked this widget:
