@@ -49,12 +49,12 @@ JSON Key: 0.price_usd
 ### 1.4
 - added configuration presets
 - added price conversion options
--- added option to multiply price by x (e.g. # of coins)
--- added option to convert base unit to fiat (e.g. btc to usd)
--- added option to convert from fiat to fiat (e.g. usd to eur)
+- added option to multiply price by x (e.g. # of coins)
+- added option to convert base unit to fiat (e.g. btc to usd)
+- added option to convert from fiat to fiat (e.g. usd to eur)
 - added suffix option to display custom text after the price
 - replaced eval() for json key processing
--- json key format has changed due to changes in parsing method
+- json key format has changed due to changes in parsing method
 - try to fix invalid/old format json keys with regex
 - migrated getRate function to main qml
 - fixed logic of show text / show icon options
