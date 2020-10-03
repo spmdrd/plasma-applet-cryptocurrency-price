@@ -10,7 +10,9 @@ ServiceTypes=Plasma/Applet
 
 X-KDE-PluginInfo-Author=Spmdrd
 X-KDE-PluginInfo-Email=spmdrd@tutamail.com
-X-KDE-PluginInfo-Version=1.0
+X-KDE-PluginInfo-Author=Ramon Bakker
+X-KDE-PluginInfo-Email=ramonbakker@rambit.nl
+X-KDE-PluginInfo-Version=1.1
 X-KDE-PluginInfo-Website=https://github.com/spmdrd/plasma-applet-cryptocurrency-price
 X-KDE-PluginInfo-Category=Utilities
 X-KDE-PluginInfo-Depends=

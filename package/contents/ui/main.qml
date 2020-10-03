@@ -20,6 +20,7 @@ Item {
 	property bool showPriceSuffix: plasmoid.configuration.showPriceSuffix
 	property bool showIcon: plasmoid.configuration.showIcon
 	property bool showText: plasmoid.configuration.showText
+	property bool showUpdatingIndicator: plasmoid.configuration.showUpdatingIndicator
 	property bool controlDecimals: plasmoid.configuration.controlDecimals
 	property bool updatingRate: false
 	property bool useCustomIcon: plasmoid.configuration.showIcon && plasmoid.configuration.icon != ''
@@ -109,7 +110,7 @@ Item {
 			height: parent.height
 			anchors.horizontalCenter: root.showIcon ? cryptoIcon.horizontalCenter : cryptoValue.horizontalCenter
 			running: updatingRate
-			visible: updatingRate
+			visible: showUpdatingIndicator && updatingRate
 		}
 		
 		Image {
@@ -122,7 +123,7 @@ Item {
 			anchors.leftMargin: root.showText ? parent.height * 0.05 : 0
 			source: "../images/blank.svg"
 			visible: root.showIcon
-			opacity: root.useCustomIcon ? 0.0 : root.updatingRate ? 0.2 : mouseAreaIcon.containsMouse ? 0.8 : 1.0
+			opacity: root.useCustomIcon ? 0.0 : showUpdatingIndicator && root.updatingRate ? 0.2 : mouseAreaIcon.containsMouse ? 0.8 : 1.0
 		}
 		
 		PlasmaCore.IconItem {
@@ -135,7 +136,7 @@ Item {
 			anchors.leftMargin: root.showText ? parent.height * 0.05 : 0
 			source: plasmoid.configuration.icon
 			visible: root.showIcon
-			opacity: root.updatingRate ? 0.2 : mouseAreaIcon2.containsMouse ? 0.8 : 1.0
+			opacity: showUpdatingIndicator && root.updatingRate ? 0.2 : mouseAreaIcon2.containsMouse ? 0.8 : 1.0
 		}
 		
 		PlasmaComponents.Label {
@@ -147,7 +148,7 @@ Item {
 			horizontalAlignment: root.showIcon ? Text.AlignLeft : Text.AlignHCenter
 			verticalAlignment: Text.AlignVCenter
 			visible: root.showText
-			opacity: root.updatingRate ? 0.2 : mouseAreaValue.containsMouse ? 0.8 : 1.0
+			opacity: showUpdatingIndicator && root.updatingRate ? 0.2 : mouseAreaValue.containsMouse ? 0.8 : 1.0
 			fontSizeMode: Text.Fit
 			minimumPixelSize: cryptoIcon.width * 0.7
 			font.pixelSize: 72

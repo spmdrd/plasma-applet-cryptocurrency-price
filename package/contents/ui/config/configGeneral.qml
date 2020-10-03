@@ -20,8 +20,9 @@ Item {
 	property alias cfg_showPricePrefix: showPricePrefix.checked
 	property alias cfg_showPriceSuffix: showPriceSuffix.checked
 	property alias cfg_showText: showText.checked
-	property alias cfg_showBackground: showBackground.checked
 	property alias cfg_showIcon: showIcon.checked
+	property alias cfg_showBackground: showBackground.checked
+	property alias cfg_showUpdatingIndicator: showUpdatingIndicator.checked
 	property string cfg_icon: plasmoid.configuration.icon
 	
 	GridLayout {
@@ -272,6 +273,15 @@ Item {
 		
 		Label {
 			text: i18n("(Disabled: Displays the price only on hover)")
+		}
+		
+		CheckBox {
+			id: showUpdatingIndicator
+			text: i18n("Show Updating Indicator")
+		}
+
+		Label {
+			text: i18n("(Disabled: Don't show busy indicator and keep the same opacity)")
 		}
 		
 		Label {

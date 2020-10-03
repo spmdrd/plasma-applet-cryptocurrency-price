@@ -45,6 +45,10 @@
       <label>Show background</label>
       <default>true</default>
     </entry>
+    <entry name="showUpdatingIndicator" type="bool">
+      <label>Show updating indicator</label>
+      <default>true</default>
+    </entry>
     <entry name="controlDecimals" type="bool">
       <label>Round decimals</label>
       <default>false</default>
