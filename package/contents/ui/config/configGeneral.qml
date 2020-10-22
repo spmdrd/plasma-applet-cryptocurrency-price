@@ -174,7 +174,7 @@ Item {
 		SpinBox {
 			id: refreshRate
 			Layout.minimumWidth: theme.mSize(theme.defaultFont).width * 18
-			suffix: i18n(" minutes")
+			suffix: i18n(" seconds")
 			minimumValue: 1
 		}
 		

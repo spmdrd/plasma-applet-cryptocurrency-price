@@ -261,7 +261,7 @@ Item {
 
 	Timer {
 		id: cryptoTimer
-		interval: plasmoid.configuration.refreshRate * 60 * 1000
+		interval: plasmoid.configuration.refreshRate * 1000
 		running: true
 		repeat: true
 		triggeredOnStart: true
