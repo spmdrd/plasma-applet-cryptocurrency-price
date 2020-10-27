@@ -9,6 +9,7 @@ Item {
 	Layout.fillWidth: true
 	property alias cfg_xeUrlA: xeUrlA.text
 	property alias cfg_xeKeyA: xeKeyA.text
+	property alias cfg_xePairA: xePairA.text
 	property alias cfg_ttLabel: ttLabel.text
 	property string cfg_onClickAction: plasmoid.configuration.onClickAction
 	property string cfg_icOnClickAction: plasmoid.configuration.icOnClickAction
@@ -150,6 +151,15 @@ Item {
 			Layout.minimumWidth: theme.mSize(theme.defaultFont).width * 18
 		}
 		
+		Label {
+			text: i18n("Pair:")
+		}
+		
+		TextField {
+			id: xePairA
+			Layout.minimumWidth: theme.mSize(theme.defaultFont).width * 18
+		}
+
 		Label {
 			text: i18n("Exchange Name:")
 		}
