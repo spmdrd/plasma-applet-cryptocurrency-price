@@ -14,7 +14,6 @@ Item {
     Layout.fillHeight: true
 
     property var subscriptions: []
-    property bool hasWebSocketError: false
     property string cryptoRate: '...'
     property string cryptoRateA: '...'
     property string cryptoRateB: '...'
@@ -286,21 +285,15 @@ Item {
         onStatusChanged: {
             switch (socket.status) {
                 case WebSocket.Error:
-                    root.hasWebSocketError = true;
                     console.error(socket.errorString);
                     break;
                 case WebSocket.Open:
-                    root.hasWebSocketError = false;
                     addSubscription();
                     break;
                 case WebSocket.Closed:
-                    console.log('Web socket closed');
-                    // Closed due to an error
-                    if (root.hasWebSocketError) {
-                        // Restart
-                        socket.active = false;
-                        socket.active = plasmoid.configuration.xeUrlA.match(/^ws(s)?.*$/);
-                    }
+                    // Restart
+                    socket.active = false;
+                    socket.active = plasmoid.configuration.xeUrlA.match(/^ws(s)?.*$/);
                     break;
                 default:
                     break;
