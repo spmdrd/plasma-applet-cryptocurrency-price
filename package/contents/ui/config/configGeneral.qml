@@ -9,6 +9,7 @@ Item {
 	Layout.fillWidth: true
 	property alias cfg_xeUrlA: xeUrlA.text
 	property alias cfg_xeKeyA: xeKeyA.text
+	property alias cfg_xePairA: xePairA.text
 	property alias cfg_ttLabel: ttLabel.text
 	property string cfg_onClickAction: plasmoid.configuration.onClickAction
 	property string cfg_icOnClickAction: plasmoid.configuration.icOnClickAction
@@ -20,8 +21,9 @@ Item {
 	property alias cfg_showPricePrefix: showPricePrefix.checked
 	property alias cfg_showPriceSuffix: showPriceSuffix.checked
 	property alias cfg_showText: showText.checked
-	property alias cfg_showBackground: showBackground.checked
 	property alias cfg_showIcon: showIcon.checked
+	property alias cfg_showBackground: showBackground.checked
+	property alias cfg_showUpdatingIndicator: showUpdatingIndicator.checked
 	property string cfg_icon: plasmoid.configuration.icon
 	
 	GridLayout {
@@ -150,6 +152,15 @@ Item {
 		}
 		
 		Label {
+			text: i18n("Pair:")
+		}
+		
+		TextField {
+			id: xePairA
+			Layout.minimumWidth: theme.mSize(theme.defaultFont).width * 18
+		}
+
+		Label {
 			text: i18n("Exchange Name:")
 		}
 		
@@ -173,7 +184,7 @@ Item {
 		SpinBox {
 			id: refreshRate
 			Layout.minimumWidth: theme.mSize(theme.defaultFont).width * 18
-			suffix: i18n(" minutes")
+			suffix: i18n(" seconds")
 			minimumValue: 1
 		}
 		
@@ -272,6 +283,15 @@ Item {
 		
 		Label {
 			text: i18n("(Disabled: Displays the price only on hover)")
+		}
+		
+		CheckBox {
+			id: showUpdatingIndicator
+			text: i18n("Show Updating Indicator")
+		}
+
+		Label {
+			text: i18n("(Disabled: Don't show busy indicator and keep the same opacity)")
 		}
 		
 		Label {
