@@ -3,6 +3,7 @@ import QtQuick.Controls 1.4
 import QtQuick.Dialogs 1.2
 import QtQuick.Layouts 1.3
 import org.kde.plasma.components 2.0 as PlasmaComponents
+import "../maxLibQt/controls" as MaxLibQt
 
 Item {
 	id: root
@@ -35,12 +36,12 @@ Item {
 		GridLayout {
 			columns: 2
 			
-			SpinBox {
+			MaxLibQt.MLDoubleSpinBox {
 				id: multiFixedInput
 				Layout.minimumWidth: theme.mSize(theme.defaultFont).width * 18
 				decimals: 8
 				stepSize: 0.00000001
-				maximumValue: 9999999999.99999999
+				to: 9999999999.99999999
 			}
 			
 			Label {
