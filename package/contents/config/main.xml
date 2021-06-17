@@ -73,7 +73,7 @@
       <label>Multiply by integer</label>
       <default>false</default>
     </entry>
-	<entry name="multiFixedInput" type="Int">
+    <entry name="multiFixedInput" type="double">
       <label>Multiply by integer value</label>
       <default>1.00000000</default>
     </entry>
