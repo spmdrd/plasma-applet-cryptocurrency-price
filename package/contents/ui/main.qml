@@ -277,9 +277,13 @@ Item {
 				xhr.onreadystatechange = function() {
 					if (xhr.readyState == 4 && xhr.status == 200) {
 						var rate = JSON.parse(xhr.responseText);
-						var keys = key.split(".");
-						for (var x = 0; x < keys.length; x++) {
-							rate = rate[keys[x]];
+						if (url.includes('CMC_PRO_API_KEY')) {
+							rate = rate.data.find(function(token){ return token.symbol == key }).quote.USD.price
+						} else {
+							var keys = key.split(".");
+							for (var x = 0; x < keys.length; x++) {
+								rate = rate[keys[x]];
+							}
 						}
 						
 /*						if (!rate || isNaN(rate)) { // old method using eval()
